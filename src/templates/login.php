@@ -5,7 +5,7 @@
             <span>
                 <ul>
                     <?php
-                        if (isset($validator)){
+                        if (isset($validator) && $validator->hasError('username')){
                             foreach ($validator->getErrors('username') as $error){
                                 echo "<li>$error</li>";
                             }
@@ -21,7 +21,7 @@
         <div>
             <span>
                     <?php
-                        if (isset($validator)){
+                        if (isset($validator) && $validator->hasError('password')){
                             foreach ($validator->getErrors('password') as $error){
                                 echo "<li>$error</li>";
                             }
