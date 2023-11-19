@@ -12,7 +12,7 @@ class Route
     private array $routeList = [];
 
     private array $currentRoute = [];
-    private array $currentMiddleware = [];
+    private array $middleware = [];
     private Response $response;
 
     public function __construct(Response $response)
@@ -45,7 +45,7 @@ class Route
             die(sprintf("There is no %s method in this controller %s", $matchedRoute['method'], $matchedRoute['controller']));
         }
 
-        $this->setCurrentMiddleware($matchedRoute['middleware']);
+        $this->setMiddleware($matchedRoute['middleware']);
         $this->setCurrentRoute($matchedRoute);
 
         return $matchedRoute;
@@ -72,17 +72,17 @@ class Route
     /**
      * @return array
      */
-    public function getCurrentMiddleware(): array
+    public function getMiddlewares(): array
     {
-        return $this->currentMiddleware;
+        return $this->middleware;
     }
 
     /**
-     * @param array $currentMiddleware
+     * @param array $middleware
      */
-    public function setCurrentMiddleware(array $currentMiddleware): void
+    public function setMiddleware(array $middleware): void
     {
-        $this->currentMiddleware = $currentMiddleware;
+        $this->middleware = $middleware;
     }
 
     /**

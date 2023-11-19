@@ -7,7 +7,7 @@ use App\Core\Request;
 class MiddlewareManager
 {
     /** @var MiddlewareInterface[] $middlewares */
-    private array $middlewares;
+    private array $middlewares = [];
     private Request $request;
 
     public function __construct(Request $request)

@@ -35,7 +35,6 @@ class Application extends Container
     {
         $this->loadApplication();
         $this->loadProviders();
-        $this->loadMiddlewares();
 
         $this->handleRequest();
     }
@@ -47,6 +46,7 @@ class Application extends Container
             $this->request->getAttribute('action', '/')
         );
 
+        $this->loadMiddlewares();
         $this->middlewareManager->run();
 
         $this->route->render(
@@ -70,10 +70,12 @@ class Application extends Container
     private function loadMiddlewares(): void
     {
         $middlewares = Config::get('app','middlewares');
-        foreach ($middlewares as $middleware){
-            $this->middlewareManager->add(
-                $this->resolveDependecy($middleware)
-            );
+        foreach ($middlewares as $middlewareName =>  $middleware){
+            if(in_array($middlewareName,$this->route->getMiddlewares())){
+                $this->middlewareManager->add(
+                    $this->resolveDependecy($middleware)
+                );
+            }
         }
     }
 }
