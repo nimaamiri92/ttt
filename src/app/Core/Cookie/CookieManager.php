@@ -17,9 +17,9 @@ class CookieManager
         setcookie(
             $name,
             $value,
-            $expiration,
+            $expiration ?? time() + 3600,
             $path,
-            $domain,
+            $domain ?? 'localhost',
             $secure,
             $httpOnly
         );

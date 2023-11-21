@@ -62,4 +62,12 @@ abstract class ValidationAggregator
     {
         return $this->errorList[$field];
     }
+
+    public function validated()
+    {
+        $commonKeys =  array_intersect_key($this->rules(),$this->request->getAttributes());
+        return array_intersect_key($this->request->getAttributes(),$commonKeys);
+
+
+    }
 }

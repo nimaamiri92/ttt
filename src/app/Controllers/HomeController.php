@@ -3,16 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\Database\DatabaseManager;
-use Psr\Http\Message\ResponseInterface;
+use App\Core\ResponseInterface;
 
 class HomeController extends BaseController
 {
-    private ResponseInterface $response;
     private DatabaseManager $databaseManager;
 
-    public function __construct(ResponseInterface $response,DatabaseManager $databaseManager)
+    public function __construct(DatabaseManager $databaseManager)
     {
-        $this->response = $response;
+        parent::__construct();
         $this->databaseManager = $databaseManager;
     }
     public function index()

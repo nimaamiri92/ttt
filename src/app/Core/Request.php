@@ -27,7 +27,7 @@ class Request
 
     public function getAttributes(): array
     {
-        return $_GET;
+        return [...$_GET, ...$_POST];
     }
 
     public function getAttribute(string $name, $default = null)

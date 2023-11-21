@@ -7,6 +7,7 @@ use App\Core\Cookie\CookieManager;
 use App\Core\Middleware\MiddlewareManager;
 use App\Core\Request;
 use App\Core\Response;
+use App\Core\ResponseInterface;
 use App\Core\Router\Route;
 
 class Application extends Container
@@ -17,7 +18,7 @@ class Application extends Container
 
     public Request $request;
 
-    public Response $response;
+    public ResponseInterface $response;
     public CookieManager $cookie;
 
     public function __construct()
