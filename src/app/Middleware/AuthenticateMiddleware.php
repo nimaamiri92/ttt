@@ -10,7 +10,7 @@ class AuthenticateMiddleware implements MiddlewareInterface
 {
     public function handle($request, Closure $next)
     {
-        if (!Application::$app->cookie->get('isLogin')) {
+        if (!Application::$app->session->get('isLogin')) {
             Application::$app->route->redirect('/login');
         }
 

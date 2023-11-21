@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Core\Cookie\CookieManager;
+use App\Core\SessionManager;
 use App\Dtos\LoginRequestDto;
 use App\Models\UserModel;
 
@@ -10,12 +10,12 @@ class LoginService
 {
 
     private UserModel $userModel;
-    private CookieManager $cookieManager;
+    private SessionManager $session;
 
-    public function __construct(UserModel $userModel,CookieManager $cookieManager)
+    public function __construct(UserModel $userModel,SessionManager $session)
     {
         $this->userModel = $userModel;
-        $this->cookieManager = $cookieManager;
+        $this->session = $session;
     }
 
     public function login(LoginRequestDto $loginRequestDto): bool
@@ -28,7 +28,7 @@ class LoginService
             throw new \Exception('User not found');
         }
 
-        $this->cookieManager->set('isLogin',true);
+        $this->session->set('isLogin',true);
 
         return true;
     }

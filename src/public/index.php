@@ -14,7 +14,7 @@ $dotenv->load();
 
 $app = new App\Application();
 
-$app->route->addRoute('GET','/',[HomeController::class, 'index']);
+$app->route->addRoute('GET','/home',[HomeController::class, 'index']);
 $app->route->addRoute('GET','/posts',[PostController::class, 'index'],['auth']);
 $app->route->addRoute('GET','/login',[LoginController::class, 'login']);
 $app->route->addRoute('POST','/login',[LoginController::class, 'loginPost']);

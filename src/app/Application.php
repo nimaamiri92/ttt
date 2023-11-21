@@ -3,12 +3,12 @@
 namespace App;
 
 use App\Core\Config\Config;
-use App\Core\Cookie\CookieManager;
 use App\Core\Middleware\MiddlewareManager;
 use App\Core\Request;
 use App\Core\Response;
 use App\Core\ResponseInterface;
 use App\Core\Router\Route;
+use App\Core\SessionManager;
 
 class Application extends Container
 {
@@ -19,7 +19,7 @@ class Application extends Container
     public Request $request;
 
     public ResponseInterface $response;
-    public CookieManager $cookie;
+    public SessionManager $session;
 
     public function __construct()
     {
@@ -28,7 +28,7 @@ class Application extends Container
         $this->request = new Request();
         $this->route = new Route($this->response);
         $this->middlewareManager = new MiddlewareManager($this->request);
-        $this->cookie = new CookieManager();
+        $this->session = new SessionManager();
     }
 
 

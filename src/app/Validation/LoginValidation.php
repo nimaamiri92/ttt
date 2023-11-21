@@ -9,8 +9,8 @@ class LoginValidation extends ValidationAggregator
     public function rules(): array
     {
         return [
-            'username' => ['required'],
-            'password' => ['required'],
+            'username' => ['required',['min',6]],
+            'password' => ['required',['max',5]],
         ];
     }
 }
